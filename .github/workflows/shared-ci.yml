@@ -148,7 +148,7 @@ jobs:
   # info
   info:
     name: Info
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: ${{ fromJSON(inputs.cid-timeout) }}
     steps:
       - name: Harden Runner
@@ -180,7 +180,7 @@ jobs:
   # build
   build:
     name: Build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       id-token: write # provenance signing
     timeout-minutes: ${{ fromJSON(inputs.cid-timeout) }}
@@ -228,7 +228,7 @@ jobs:
   # test
   test:
     name: Test
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: ${{ fromJSON(inputs.cid-timeout) }}
     steps:
       - name: Harden Runner
@@ -262,7 +262,7 @@ jobs:
   # lint
   lint:
     name: Lint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: ${{ fromJSON(inputs.cid-timeout) }}
     steps:
       - name: Harden Runner
@@ -296,7 +296,7 @@ jobs:
   # scan
   scan:
     name: Scan
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build, test, lint]
     permissions:
       security-events: write
@@ -343,7 +343,7 @@ jobs:
   # package
   package:
     name: Package
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     permissions:
       id-token: write # provenance signing
@@ -386,7 +386,7 @@ jobs:
   # publish
   publish:
     name: Publish
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [package, scan]
     permissions:
       # create release
@@ -436,7 +436,7 @@ jobs:
   # Pages
   pages:
     name: Pages
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [scan]
     permissions:
       pages: write
